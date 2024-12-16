@@ -1,6 +1,5 @@
 // let's create a custom event emitter named as pubsub
 export class PubSub {
-//   private static subscribers: Record<string, Function[]> = {};
   static subscribers: Record<string, Function[]> = {};
 
   static subscribe(event: string, callback: Function) {
@@ -8,6 +7,7 @@ export class PubSub {
       this.subscribers[event] = [];
     }
     this.subscribers[event].push(callback);
+    return () => this.unsubscribe(event, callback);
   }
 
   static publish(event: string, data?: any) {

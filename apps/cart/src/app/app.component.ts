@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, NgZone, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { config } from 'libs/shared/src/index';
+import { config, Product } from 'libs/shared/src/index';
 @Component({
   standalone: true,
   imports: [CommonModule],
@@ -49,15 +49,39 @@ import { config } from 'libs/shared/src/index';
     `,
   ],
 })
-export class AppComponent {
+export class AppComponent implements OnInit, OnDestroy {
   logoUrl = `${config.cartUrl}/logo.png`;
-  cartProducts = [
-    { id: 1, name: 'Product 1', price: 10 },
-    { id: 2, name: 'Product 2', price: 20 },
-    { id: 3, name: 'Product 3', price: 30 },
-  ];
+  cartProducts: Product[] = [];
+  unsubscribeProductAdd: VoidFunction;
+  unsubscribeProductRemove: VoidFunction;
+
+  constructor(private zone: NgZone) {
+    this.cartProducts = [];
+    this.unsubscribeProductAdd = () => { };
+    this.unsubscribeProductRemove = () => { };
+  }
+
+
 
   removeFromCart(index: number): void {
-    this.cartProducts.splice(index, 1);
+    window.PubSub.publish('product-removed', this.cartProducts[index]);
+  }
+
+  ngOnInit(): void {
+    this.unsubscribeProductAdd = window.PubSub.subscribe('product-added', (product: Product) => {
+      this.zone.run(() => {
+        this.cartProducts.push(product);
+      });
+    });
+
+    this.unsubscribeProductRemove = window.PubSub.subscribe('product-removed', (product: Product) => {
+      this.zone.run(() => {
+        this.cartProducts = this.cartProducts.filter((p) => p.id !== product.id);
+      });
+    });
+  }
+
+  ngOnDestroy(): void {
+
   }
 }

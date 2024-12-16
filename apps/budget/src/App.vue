@@ -124,18 +124,22 @@ export default {
       const overspend = Math.max(0, totalExpenses - this.budget);
 
       if (overspend > 0) {
+        const labels = this.expenses.map((e) => e.name);
+        const backgroundColors = [
+          '#36A2EB',
+          '#FFCE56',
+          '#4BC0C0',
+          '#9966FF',
+          '#FF6384',
+        ];
+        const selectedColors = backgroundColors.slice(0, labels.length);
+
         return {
-          labels: [...this.expenses.map((e) => e.name), 'Overspend'],
+          labels: [...labels, 'Overspend'],
           datasets: [
             {
               data: [...expenseData, overspend],
-              backgroundColor: [
-                '#36A2EB',
-                '#FFCE56',
-                '#4BC0C0',
-                '#9966FF',
-                '#FF6384',
-              ],
+              backgroundColor: [...selectedColors, '#FF6384'],
             },
           ],
         };
@@ -235,18 +239,33 @@ export default {
     if (this.isValidBudget) {
       this.updateChart();
     }
-    window.PubSub.subscribe('products-selected', (products) => {
-      this.expenses = products;
-      if (this.isValidBudget) {
-        this.updateChart();
+    this.unsubscribeProductAdd = window.PubSub.subscribe(
+      'product-added',
+      (product) => {
+        this.expenses.push(product);
+        if (this.isValidBudget) {
+          this.updateChart();
+        }
       }
-    });
+    );
+
+    this.unsubscribeProductRemove = window.PubSub.subscribe(
+      'product-removed',
+      (product) => {
+        this.expenses = this.expenses.filter((p) => p.id !== product.id);
+        if (this.isValidBudget) {
+          this.updateChart();
+        }
+      }
+    );
   },
 
   beforeDestroy() {
     if (this.currentChart) {
       this.currentChart.destroy();
     }
+    this.unsubscribeProductAdd?.();
+    this.unsubscribeProductRemove?.();
   },
 
   watch: {
