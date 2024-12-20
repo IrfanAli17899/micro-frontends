@@ -6,6 +6,15 @@ const config: ModuleFederationConfig = {
   exposes: {
     './Module': './src/bootstrap.ts',
   },
+  additionalShared: [['@micro-frontends/shared', { singleton: true }]],
+  shared: (lib, config) => {
+    return {
+      ...config,
+      singleton: true,
+      ...(lib === '@micro-frontends/shared' ? { import: "libs/shared/src/index.ts" } : {}),
+    }
+  },
+
 };
 
 /**

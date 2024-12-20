@@ -34,11 +34,3 @@ export class PubSub {
     this.subscribers = {};
   }
 }
-
-declare global {
-  interface Window {
-    PubSub: typeof PubSub;
-  }
-}
-
-window.PubSub = PubSub;

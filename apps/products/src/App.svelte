@@ -1,7 +1,7 @@
 <script>
   import '@micro-frontends/shared-styles';
-  import { config } from '@micro-frontends/shared';
-  import { onDestroy } from 'svelte';
+  import { config, PubSub } from '@micro-frontends/shared';
+  import { onMount } from 'svelte';
 
   let products = [
     { id: 1, name: 'Product 1', price: 10 },
@@ -12,14 +12,21 @@
   let selectedProducts = new Set();
   const logoUrl = `${config.productsUrl}/assets/logo.png`;
 
-  const unsubscribeRemove = PubSub.subscribe('product-removed', (product) => {
-    selectedProducts.delete(product.id);
-    selectedProducts = new Set(selectedProducts);
-  });
+  onMount(() => {
+    const unsubscribeRemove = PubSub.subscribe('product-removed', (product) => {
+      selectedProducts.delete(product.id);
+      selectedProducts = new Set(selectedProducts);
+    });
 
-  const unsubscribeAdded = PubSub.subscribe('product-added', (product) => {
-    selectedProducts.add(product.id);
-    selectedProducts = new Set(selectedProducts);
+    const unsubscribeAdded = PubSub.subscribe('product-added', (product) => {
+      selectedProducts.add(product.id);
+      selectedProducts = new Set(selectedProducts);
+    });
+
+    return () => {
+      unsubscribeRemove();
+      unsubscribeAdded();
+    };
   });
 
   function toggleSelection(product) {
@@ -29,11 +36,6 @@
       PubSub.publish('product-added', product);
     }
   }
-
-  onDestroy(() => {
-    unsubscribeRemove();
-    unsubscribeAdded();
-  });
 </script>
 
 <div class="simple-card">

@@ -1,6 +1,7 @@
 import { Component, NgZone, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { config, Product } from 'libs/shared/src/index';
+import { config, Product, PubSub } from '@micro-frontends/shared';
+
 @Component({
   standalone: true,
   imports: [CommonModule],
@@ -64,17 +65,17 @@ export class AppComponent implements OnInit, OnDestroy {
 
 
   removeFromCart(index: number): void {
-    window.PubSub.publish('product-removed', this.cartProducts[index]);
+   PubSub.publish('product-removed', this.cartProducts[index]);
   }
 
   ngOnInit(): void {
-    this.unsubscribeProductAdd = window.PubSub.subscribe('product-added', (product: Product) => {
+    this.unsubscribeProductAdd = PubSub.subscribe('product-added', (product: Product) => {
       this.zone.run(() => {
         this.cartProducts.push(product);
       });
     });
 
-    this.unsubscribeProductRemove = window.PubSub.subscribe('product-removed', (product: Product) => {
+    this.unsubscribeProductRemove = PubSub.subscribe('product-removed', (product: Product) => {
       this.zone.run(() => {
         this.cartProducts = this.cartProducts.filter((p) => p.id !== product.id);
       });
@@ -82,6 +83,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-
+    this.unsubscribeProductAdd();
+    this.unsubscribeProductRemove();
   }
 }

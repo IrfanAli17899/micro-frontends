@@ -62,7 +62,7 @@
 
 <script>
 import { Chart } from 'chart.js/auto';
-import { config } from '@micro-frontends/shared';
+import { config, PubSub } from '@micro-frontends/shared';
 import '@micro-frontends/shared-styles';
 
 export default {
@@ -239,7 +239,7 @@ export default {
     if (this.isValidBudget) {
       this.updateChart();
     }
-    this.unsubscribeProductAdd = window.PubSub.subscribe(
+    this.unsubscribeProductAdd = PubSub.subscribe(
       'product-added',
       (product) => {
         this.expenses.push(product);
@@ -249,7 +249,7 @@ export default {
       }
     );
 
-    this.unsubscribeProductRemove = window.PubSub.subscribe(
+    this.unsubscribeProductRemove = PubSub.subscribe(
       'product-removed',
       (product) => {
         this.expenses = this.expenses.filter((p) => p.id !== product.id);
