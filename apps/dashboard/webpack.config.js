@@ -42,6 +42,7 @@ module.exports = ()=>{
         filename: 'remoteEntry.js',
         remotes:{
           increment: 'http://localhost:4201/remoteEntry.js',
+          decrement: 'http://localhost:4202/remoteEntry.js',
         },
         remoteType:'module',
         shared: {},

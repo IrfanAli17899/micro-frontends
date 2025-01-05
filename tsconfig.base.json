@@ -16,6 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "increment/Module": ["apps/increment/src/bootstrap.ts"],
+      "decrement/Module": ["apps/decrement/src/bootstrap.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
