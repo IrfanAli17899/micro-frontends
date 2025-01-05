@@ -70,6 +70,11 @@
         "{workspaceRoot}/.eslintignore",
         "{workspaceRoot}/eslint.config.cjs"
       ]
+    },
+    "@nx/js:tsc": {
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
     }
   }
 }

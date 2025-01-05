@@ -15,8 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "increment/Module": ["apps/increment/src/bootstrap.ts"],
-      "decrement/Module": ["apps/decrement/src/bootstrap.ts"]
+      "@micro-frontend-tutorial/shared": ["libs/shared/src/index.ts"],
+      "decrement/Module": ["apps/decrement/src/bootstrap.ts"],
+      "increment/Module": ["apps/increment/src/bootstrap.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
