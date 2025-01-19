@@ -45,7 +45,13 @@ module.exports = ()=>{
           decrement: 'http://localhost:4202/remoteEntry.js',
         },
         remoteType:'module',
-        shared: {},
+        shared: {
+          '@micro-frontend-tutorial/shared': {
+            singleton: true,
+            requiredVersion: false,
+            import: 'libs/shared/src/index.ts',
+          },
+        },
       }),
     ],
   }

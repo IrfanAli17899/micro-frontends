@@ -26,7 +26,12 @@ export default defineConfig({
       exposes: {
         './Module': './src/bootstrap.ts',
       },
-      shared: {},
+      shared: {
+        '@micro-frontend-tutorial/shared': {
+          requiredVersion: false,
+          packagePath: 'libs/shared/src/index.ts',
+        },
+      },
     }),
   ],
   // Uncomment this if you are using workers.
@@ -36,6 +41,7 @@ export default defineConfig({
   build: {
     outDir: '../../dist/apps/decrement',
     assetsDir: '',
+    target:'esnext',
     emptyOutDir: true,
     reportCompressedSize: true,
     commonjsOptions: {

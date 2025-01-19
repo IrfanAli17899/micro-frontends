@@ -33,7 +33,13 @@ module.exports = (config, ctx) => {
         './Module': './apps/increment/src/bootstrap.ts',
       },
       library: { type: 'module' },
-      shared: {},
+      shared: {
+        '@micro-frontend-tutorial/shared': {
+          singleton: true,
+          requiredVersion: false,
+          import: 'libs/shared/src/index.ts',
+        },
+      },
     }),
   ];
   return config;
