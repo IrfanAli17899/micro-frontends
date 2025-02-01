@@ -1,0 +1,22 @@
+{
+  "name": "show",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/show/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "options": {
+        "lintFilePatterns": ["apps/show/**/*.{ts,svelte,spec.ts}"]
+      }
+    },
+    "check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "svelte-check",
+        "cwd": "apps/show"
+      }
+    }
+  }
+}

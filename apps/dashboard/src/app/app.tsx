@@ -16,13 +16,16 @@ export function App() {
   const loadModules = async () => {
     const { bootstrap } = await import('increment/Module');
     const { bootstrap: bootstrapDecrement } = await import('decrement/Module');
+    const { bootstrap: bootstrapShow } = await import('show/Module');
     bootstrapDecrement('#decrement-container');
+    bootstrapShow(document.getElementById('show-container') as HTMLElement);
     bootstrap();
   };
 
   return (
     <div>
       <div id='decrement-container' />
+      <div id='show-container' />
       {/* @ts-expect-error need to define */}
       <app-increment></app-increment>
       <NxWelcome title="dashboard" />

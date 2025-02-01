@@ -1,15 +1,12 @@
 {
   "compilerOptions": {
-    "jsx": "react-jsx",
     "allowJs": false,
     "esModuleInterop": false,
     "allowSyntheticDefaultImports": true,
-    "strict": true
+    "types": ["vite/client"]
   },
   "files": [],
-  "include": [
-    "./svelte-shims.d.ts"
-  ],
+  "include": [],
   "references": [
     {
       "path": "./tsconfig.app.json"
