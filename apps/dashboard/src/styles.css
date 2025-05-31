@@ -1,2 +1,92 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('../../../libs/shared/src/styles/index.css');
+/* You can add global styles to this file, and also import other style files */
+html {
+    -webkit-text-size-adjust: 100%;
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+    'Noto Color Emoji';
+    line-height: 1.5;
+    tab-size: 4;
+    scroll-behavior: smooth;
+    zoom: 0.9;
+  }
+  body {
+    font-family: inherit;
+    line-height: inherit;
+    margin: 0;
+  }
+  h1,
+  h2,
+  p,
+  pre {
+    margin: 0;
+  }
+  *,
+  ::before,
+  ::after {
+    box-sizing: border-box;
+    border-width: 0;
+    border-style: solid;
+    border-color: currentColor;
+  }
+  h1,
+  h2 {
+    font-size: inherit;
+    font-weight: inherit;
+  }
+  a {
+    color: inherit;
+    text-decoration: inherit;
+  }
+  .container {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1rem;
+    max-width: 90%;
+    color: rgba(55, 65, 81, 1);
+    width: 100%;
+  }
+  #welcome h1 {
+    font-size: 3rem;
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    line-height: 1;
+  }
+  #welcome span {
+    display: block;
+    font-size: 1.875rem;
+    font-weight: 300;
+    line-height: 2.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .apps-container {
+    padding-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    grid-template-rows: auto auto; /* Two rows */
+    gap: 16px; /* Optional: adds spacing between grid items */
+  }
+
+  #budget {
+    grid-column: span 2;
+    .info-side {
+      flex: 1 0 250px;
+    }
+  }
+
+  .simple-card {
+    max-width: 100% !important;
+    margin: 0 !important;
+  }
+  .logo {
+    width: 60px;
+    height: 60px;
+  }
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
