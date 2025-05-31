@@ -21,7 +21,7 @@
             "input": "apps/cart/public"
           }
         ],
-        "styles": ["apps/cart/src/styles.css"],
+        "styles": ["apps/cart/src/styles.css", "@micro-frontend-tutorial/shared/styles/index.css"],
         "scripts": [],
         "customWebpackConfig": {
           "path": "apps/cart/webpack.config.js"

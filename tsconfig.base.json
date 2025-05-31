@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@micro-frontend-tutorial/shared/*": ["libs/shared/src/*"],
       "@micro-frontend-tutorial/shared": ["libs/shared/src/index.ts"],
       "budget/Module": ["apps/budget/src/bootstrap.ts"],
       "cart/Module": ["apps/cart/src/bootstrap.ts"],

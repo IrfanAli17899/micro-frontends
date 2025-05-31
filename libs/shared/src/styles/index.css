@@ -1,102 +1,95 @@
-html {
-    -webkit-text-size-adjust: 100%;
-    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
-    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
-    'Noto Color Emoji';
-    line-height: 1.5;
-    tab-size: 4;
-    scroll-behavior: smooth;
-  }
-  body {
-    font-family: inherit;
-    line-height: inherit;
-    margin: 0;
-  }
-  h1,
-  h2,
-  p,
-  pre {
-    margin: 0;
-  }
-  *,
-  ::before,
-  ::after {
-    box-sizing: border-box;
-    border-width: 0;
-    border-style: solid;
-    border-color: currentColor;
-  }
-  h1,
-  h2 {
-    font-size: inherit;
-    font-weight: inherit;
-  }
-  a {
-    color: inherit;
-    text-decoration: inherit;
-  }
-  pre {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-    'Liberation Mono', 'Courier New', monospace;
-  }
-  svg {
-    display: block;
-    vertical-align: middle;
-    shape-rendering: auto;
-    text-rendering: optimizeLegibility;
-  }
-  pre {
-    background-color: rgba(55, 65, 81, 1);
-    border-radius: 0.25rem;
-    color: rgba(229, 231, 235, 1);
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-    'Liberation Mono', 'Courier New', monospace;
-    overflow: auto;
-    padding: 0.5rem 0.75rem;
-  }
+/* Shared Simple Card Styles */
+.simple-card {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f7fa;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 40px auto;
+}
 
-  .shadow {
-    box-shadow: 0 0 #0000, 0 0 #0000, 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-    0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  }
-  .rounded {
-    border-radius: 1.5rem;
-  }
-  .wrapper {
-    width: 100%;
-  }
-  .container {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 768px;
-    padding-bottom: 3rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    color: rgba(55, 65, 81, 1);
-    width: 100%;
-  }
-  #welcome {
-    margin-top: 2.5rem;
-  }
-  #welcome h1 {
-    font-size: 3rem;
-    font-weight: 500;
-    letter-spacing: -0.025em;
-    line-height: 1;
-  }
-  #welcome span {
-    display: block;
-    font-size: 1.875rem;
-    font-weight: 300;
-    line-height: 2.25rem;
-    margin-bottom: 0.5rem;
-  }
+.simple-card .header {
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  margin-bottom: 20px;
+  gap: 1rem;
+}
 
-  button {
-    padding: 20px;
-    font-size: 16px;
-  }
-  button:hover {
-    cursor: pointer;
-  }
+.simple-card .header h1 {
+  font-size: 1.8rem;
+  margin: 0px;
+  color: #333;
+}
+
+.simple-card .header p {
+  color: #666;
+  margin: 0;
+}
+
+.simple-card .logo {
+  width: 40px;
+  height: 40px;
+}
+
+.simple-card .content {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.simple-card .content h2 {
+  margin-bottom: 16px;
+  font-size: 1.5rem;
+  color: #444;
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 8px;
+}
+
+.simple-card table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.simple-card table thead th {
+  text-align: left;
+  padding: 8px;
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  font-weight: bold;
+}
+
+.simple-card table tbody td {
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+.simple-card table tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+.simple-card .btn {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.simple-card .btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.simple-card .btn:not(:disabled):hover {
+  background-color: #0056b3;
+}
