@@ -3,5 +3,5 @@ import NxWelcome from './NxWelcome.vue';
 </script>
 
 <template>
-  <NxWelcome title="decrement" />
+  <NxWelcome title="budget" />
 </template>

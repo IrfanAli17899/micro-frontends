@@ -41,9 +41,9 @@ module.exports = ()=>{
         name: 'dashboard',
         filename: 'remoteEntry.js',
         remotes:{
-          increment: 'http://localhost:4201/remoteEntry.js',
-          decrement: 'http://localhost:4202/remoteEntry.js',
-          show: 'http://localhost:4203/remoteEntry.js',
+          cart: 'http://localhost:4201/remoteEntry.js',
+          budget: 'http://localhost:4202/remoteEntry.js',
+          products: 'http://localhost:4203/remoteEntry.js',
         },
         remoteType:'module',
         shared: {

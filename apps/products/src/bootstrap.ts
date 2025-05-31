@@ -5,7 +5,7 @@ export const bootstrap = (container: HTMLElement) => {
   const app = new App({
     target: container,
     props: {
-      name: 'show',
+      name: 'products',
     },
   });
 

@@ -1,16 +1,16 @@
 import { Component, NgZone } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { ReduxService } from '../services/redux.service';
-import { increment } from '@micro-frontend-tutorial/shared';
+import { cart } from '@micro-frontend-tutorial/shared';
 
 @Component({
   imports: [],
-  selector: 'app-increment',
+  selector: 'app-cart',
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  title = 'increment';
+  title = 'cart';
   private destroy$ = new Subject<void>();
   count = 0;
 
@@ -18,8 +18,8 @@ export class AppComponent {
     this.count = 0;
   }
 
-  increment(): void {
-    this.reduxService.dispatch(increment());
+  cart(): void {
+    this.reduxService.dispatch(cart());
   }
 
   ngOnInit(): void {

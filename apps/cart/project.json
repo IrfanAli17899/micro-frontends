@@ -1,30 +1,30 @@
 {
-  "name": "increment",
+  "name": "cart",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "prefix": "app",
-  "sourceRoot": "apps/increment/src",
+  "sourceRoot": "apps/cart/src",
   "tags": [],
   "targets": {
     "build": {
       "executor": "@nx/angular:webpack-browser",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/increment",
-        "index": "apps/increment/src/index.html",
-        "main": "apps/increment/src/main.ts",
+        "outputPath": "dist/apps/cart",
+        "index": "apps/cart/src/index.html",
+        "main": "apps/cart/src/main.ts",
         "polyfills": ["zone.js"],
-        "tsConfig": "apps/increment/tsconfig.app.json",
+        "tsConfig": "apps/cart/tsconfig.app.json",
         "assets": [
           {
             "glob": "**/*",
-            "input": "apps/increment/public"
+            "input": "apps/cart/public"
           }
         ],
-        "styles": ["apps/increment/src/styles.css"],
+        "styles": ["apps/cart/src/styles.css"],
         "scripts": [],
         "customWebpackConfig": {
-          "path": "apps/increment/webpack.config.js"
+          "path": "apps/cart/webpack.config.js"
         }
       },
       "configurations": {
@@ -58,10 +58,10 @@
       "executor": "@nx/angular:dev-server",
       "configurations": {
         "production": {
-          "buildTarget": "increment:build:production"
+          "buildTarget": "cart:build:production"
         },
         "development": {
-          "buildTarget": "increment:build:development"
+          "buildTarget": "cart:build:development"
         }
       },
       "defaultConfiguration": "development"
@@ -69,7 +69,7 @@
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "buildTarget": "increment:build"
+        "buildTarget": "cart:build"
       }
     },
     "lint": {
@@ -78,7 +78,7 @@
     "serve-static": {
       "executor": "@nx/web:file-server",
       "options": {
-        "buildTarget": "increment:build",
+        "buildTarget": "cart:build",
         "spa": true
       }
     }

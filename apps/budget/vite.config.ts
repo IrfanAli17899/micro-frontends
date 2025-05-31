@@ -1,45 +1,47 @@
 /// <reference types='vitest' />
 import { defineConfig } from 'vite';
-import { svelte } from '@sveltejs/vite-plugin-svelte';
+import vue from '@vitejs/plugin-vue';
+import federation from '@originjs/vite-plugin-federation';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import { nxCopyAssetsPlugin } from '@nx/vite/plugins/nx-copy-assets.plugin';
-import federation from '@originjs/vite-plugin-federation';
-
 
 export default defineConfig({
   root: __dirname,
-  cacheDir: '../../node_modules/.vite/apps/show',
+  cacheDir: '../../node_modules/.vite/apps/budget',
   server: {
-    port: 4203,
+    port: 4202,
     host: 'localhost',
   },
   preview: {
-    port: 4203,
+    port: 4202,
     host: 'localhost',
   },
-  plugins: [svelte(), nxViteTsPaths(), nxCopyAssetsPlugin(['*.md']),
-  federation({
-    name: 'show',
-    filename: 'remoteEntry.js',
-    exposes: {
-      './Module': './src/bootstrap.ts',
-    },
-    shared: {
-      '@micro-frontend-tutorial/shared': {
-        requiredVersion: false,
-        packagePath: 'libs/shared/src/index.ts',
+  plugins: [
+    vue(),
+    nxViteTsPaths(),
+    nxCopyAssetsPlugin(['*.md']),
+    federation({
+      name: 'budget',
+      filename: 'remoteEntry.js',
+      exposes: {
+        './Module': './src/bootstrap.ts',
       },
-    },
-  }),
+      shared: {
+        '@micro-frontend-tutorial/shared': {
+          requiredVersion: false,
+          packagePath: 'libs/shared/src/index.ts',
+        },
+      },
+    }),
   ],
   // Uncomment this if you are using workers.
   // worker: {
   //  plugins: [ nxViteTsPaths() ],
   // },
   build: {
-    outDir: '../../dist/apps/show',
+    outDir: '../../dist/apps/budget',
     assetsDir: '',
-    target: 'esnext',
+    target:'esnext',
     emptyOutDir: true,
     reportCompressedSize: true,
     commonjsOptions: {

@@ -14,7 +14,7 @@ module.exports = (config, ctx) => {
   
   config.output = {
     ...(config.output ?? {}),
-    uniqueName: 'increment',
+    uniqueName: 'cart',
     publicPath: 'auto',
     scriptType: 'module',
   }
@@ -27,10 +27,10 @@ module.exports = (config, ctx) => {
   config.plugins = [
     ...(config.plugins ?? []),
     new ModuleFederationPlugin({
-      name: 'increment',
+      name: 'cart',
       filename: 'remoteEntry.js',
       exposes: {
-        './Module': './apps/increment/src/bootstrap.ts',
+        './Module': './apps/cart/src/bootstrap.ts',
       },
       library: { type: 'module' },
       shared: {

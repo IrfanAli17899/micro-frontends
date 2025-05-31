@@ -16,9 +16,9 @@
     "baseUrl": ".",
     "paths": {
       "@micro-frontend-tutorial/shared": ["libs/shared/src/index.ts"],
-      "decrement/Module": ["apps/decrement/src/bootstrap.ts"],
-      "increment/Module": ["apps/increment/src/bootstrap.ts"],
-      "show/Module": ["apps/show/src/bootstrap.ts"]
+      "budget/Module": ["apps/budget/src/bootstrap.ts"],
+      "cart/Module": ["apps/cart/src/bootstrap.ts"],
+      "products/Module": ["apps/products/src/bootstrap.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

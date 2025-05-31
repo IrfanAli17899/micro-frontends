@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue';
 import { createSelector } from '@reduxjs/toolkit';
-import { decrement, store } from '@micro-frontend-tutorial/shared';
+import { budget, store } from '@micro-frontend-tutorial/shared';
 
 // Define component props
 defineProps<{
@@ -52,7 +52,7 @@ onUnmounted(() => {
           <span> Hello there, </span>
           Welcome {{ title }} {{ count }} 👋
         </h1>
-        <button @click="store.dispatch(decrement())">Decrement</button>
+        <button @click="store.dispatch(budget())">Budget</button>
       </div>
     </div>
   </div>

@@ -14,21 +14,21 @@ export function App() {
   }, []);
 
   const loadModules = async () => {
-    const { bootstrap } = await import('increment/Module');
-    const { bootstrap: bootstrapDecrement } = await import('decrement/Module');
-    const { bootstrap: bootstrapShow } = await import('show/Module');
-    bootstrapDecrement('#decrement-container');
-    bootstrapShow(document.getElementById('show-container') as HTMLElement);
+    const { bootstrap } = await import('cart/Module');
+    const { bootstrap: bootstrapBudget } = await import('budget/Module');
+    const { bootstrap: bootstrapProducts } = await import('products/Module');
+    bootstrapBudget('#budget-container');
+    bootstrapProducts(document.getElementById('products-container') as HTMLElement);
     bootstrap();
   };
 
   return (
     <div>
-      <div id='decrement-container' />
-      <div id='show-container' />
-      {/* @ts-expect-error need to define */}
-      <app-increment></app-increment>
       <NxWelcome title="dashboard" />
+      <div id='budget-container' />
+      <div id='products-container' />
+      {/* @ts-expect-error need to define */}
+      <app-cart></app-cart>
     </div>
   );
 }
