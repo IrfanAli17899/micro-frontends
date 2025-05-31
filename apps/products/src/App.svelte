@@ -1,44 +1,65 @@
-<script lang="ts">
+<script>
+  import '@micro-frontend-tutorial/shared/styles/index.css';
+  import {
+    config,
+    store,
+    addProduct,
+    removeProduct,
+  } from '@micro-frontend-tutorial/shared';
   import { writable } from 'svelte/store';
-  // @ts-ignore
-  import { store } from '@micro-frontend-tutorial/shared';
-  export let name: string;
-  const counterStore = writable(store.getState().counter);
+
+  const appStore = writable(store.getState().app);
 
   store.subscribe(() => {
-    const newState = store.getState().counter;
-    if (newState !== $counterStore) {
-      counterStore.set(newState);
+    const newState = store.getState().app;
+    if (newState !== $appStore) {
+      appStore.set(newState);
     }
   });
+
+  const logoUrl = `${config.productsUrl}/logo.png`;
+
+  function toggleSelection(product) {
+    const isSelected = $appStore.selectedProducts[product.id];
+    store.dispatch(isSelected ? removeProduct(product) : addProduct(product));
+  }
 </script>
 
-<main>
-  <h1>Welcome {name}! ({$counterStore.value})</h1>
-  <p>
-    Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn
-    how to build Svelte apps.
-  </p>
-</main>
+<div class="simple-card">
+  <div class="header">
+    <img src={logoUrl} alt="Logo" class="logo" />
+    <h1>Products App 👋</h1>
+  </div>
+  <div class="content">
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Name</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        {#each $appStore.products as product}
+          <tr>
+            <td class="select-column">
+              <input
+                type="checkbox"
+                checked={$appStore.selectedProducts[product.id]}
+                on:change={() => toggleSelection(product)}
+              />
+            </td>
+            <td>{product.name}</td>
+            <td>${product.price}</td>
+          </tr>
+        {/each}
+      </tbody>
+    </table>
+  </div>
+</div>
 
 <style>
-  main {
-    text-align: center;
-    padding: 1em;
-    max-width: 240px;
-    margin: 0 auto;
-  }
-
-  h1 {
-    color: #ff3e00;
-    text-transform: uppercase;
-    font-size: 4em;
-    font-weight: 100;
-  }
-
-  @media (min-width: 640px) {
-    main {
-      max-width: none;
-    }
+  .select-column {
+    width: 2rem;
   }
 </style>
